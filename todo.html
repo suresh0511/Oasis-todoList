@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>ToDo List</h2>
+        </div>
+        <div class="form">
+            <h2>Add Items</h2>
+            <div class="input">
+                <input type="text" id="taskInput" class="content" placeholder="Add a new task">
+                <input type="submit" id="submit" class="btn" onclick="addTask()">
+            </div>
+            <h3 class="head">Tasks : </h3>
+            <div class="output" id="addForm">
+                <ol class="list-group" id="taskList"></ol>
+            </div>
+        </div>
+    </div>
+    <script>
+            function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+
+            if (taskInput.value.trim() === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            const taskItem = document.createElement("li");
+            taskItem.textContent = taskInput.value;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                taskList.removeChild(taskItem);
+            };
+
+            taskItem.appendChild(deleteButton);
+            taskList.appendChild(taskItem);
+
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
